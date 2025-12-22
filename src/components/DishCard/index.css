@@ -1,0 +1,214 @@
+.dish-card {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  border-radius: 8px;
+  border: 2px solid lightgrey;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+}
+
+.dish-left {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.border-box {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.veg-border {
+  border: 2px solid #006400;
+  background-color: #f3f2f2;
+}
+
+.non-veg-border {
+  border: 2px solid #8b0000;
+  background-color: #f3f2f2;
+}
+
+.veg-indicator {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.veg {
+  background-color: #006400;
+}
+
+.non-veg {
+  background-color: #8b0000;
+}
+
+.dish-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Roboto';
+}
+
+.dish-name {
+  margin: 0px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+  max-width: 260px;
+  line-height: 1.3;
+}
+
+.dish-price {
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #424a4a;
+}
+
+.dish-description {
+  max-width: 250px;
+  margin: 0px;
+  font-size: 22px;
+  color: #9c9898;
+}
+
+.quantity-buttons-and-dish-availability {
+  width: 150px;
+}
+
+.quantity-controls {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #008000;
+  border-radius: 40px;
+  padding: 8px;
+  border: none;
+}
+
+.button-icon {
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 40px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.quantity-text {
+  color: #ffffff;
+  font-size: 28px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.not-available-text {
+  margin: 0px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #ff0000;
+}
+
+.customizations-availability-text {
+  margin: 0px;
+  width: 150px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #0c0ce3;
+  opacity: 0.8;
+}
+
+.dish-right {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.dish-calories {
+  color: #ff9500;
+  font-family: 'Roboto';
+  font-size: 22px;
+  font-weight: 700;
+  width: 100px;
+  align-self: center;
+}
+
+.dish-image {
+  border-radius: 5px;
+  align-self: flex-start;
+  width: 160px;
+  height: 160px;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+  .dish-card {
+    width: 98%;
+  }
+  .dish-right {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .dish-image {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dish-card {
+    width: 98%;
+    padding: 10px;
+  }
+  .border-box {
+    width: 30px;
+    height: 30px;
+  }
+  .veg-indicator {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dish-name {
+    font-size: 20px;
+  }
+  .dish-price {
+    font-size: 16px;
+  }
+  .dish-description {
+    max-width: 600px;
+    font-size: 16px;
+  }
+
+  .quantity-buttons-and-dish-availability {
+    width: 120px;
+  }
+  .button-icon {
+    font-size: 24px;
+  }
+  .quantity-text {
+    font-size: 20px;
+  }
+  .not-available-text {
+    font-size: 16px;
+  }
+  .customizations-availability-text {
+    width: 350px;
+    font-size: 16px;
+  }
+
+  .dish-calories {
+    font-size: 16px;
+  }
+
+  .dish-image {
+    width: 120px;
+    height: 120px;
+  }
+}

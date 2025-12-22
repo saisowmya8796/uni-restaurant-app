@@ -1,0 +1,48 @@
+.restaurant-menu-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.loader-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.failure-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: #000000;
+}
+
+.failure-text {
+  text-align: center;
+  font-family: 'Roboto';
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.retry-button {
+  margin-top: 16px;
+  padding: 8px 18px;
+  background-color: #0b69ff;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.retry-button:hover {
+  background-color: #035ddc;
+}

@@ -1,0 +1,75 @@
+.category-section {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0px;
+  list-style-type: none;
+  margin: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  box-shadow:
+    0 -1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Show scrollbar */
+.category-section::-webkit-scrollbar {
+  height: 3px;
+}
+
+/* Scrollbar track */
+.category-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Scrollbar thumb */
+.category-section::-webkit-scrollbar-thumb {
+  background: #8d8484;
+}
+
+/* Hide arrow buttons */
+.category-section::-webkit-scrollbar-button {
+  display: none;
+}
+
+.category-tab-item {
+  flex: 0;
+  margin-right: 32px;
+  padding: 14px 0px 0px 0px;
+  border-bottom: 3px solid transparent;
+}
+
+.active-tab {
+  border-bottom: 3px solid #e11d48;
+}
+
+.category-tab {
+  text-align: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto';
+  font-size: 16px;
+  color: #475569;
+  padding: 0px 50px;
+  padding-bottom: 15px;
+}
+
+.active-tab-text {
+  color: #e11d48;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  .category-section {
+    overflow-x: hidden;
+  }
+  .category-section::-webkit-scrollbar {
+    display: none;
+  }
+  .category-tab-item {
+    margin-right: 0px;
+  }
+  .category-tab {
+    font-size: 18px;
+  }
+}
