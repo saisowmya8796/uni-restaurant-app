@@ -15,9 +15,13 @@
 .nav-heading {
   color: #000000;
   font-family: 'Roboto';
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 800;
+  border: none;
+  outline: none;
+  cursor: pointer;
   margin: 0px;
+  background: transparent;
 }
 
 .nav-menu {
@@ -45,11 +49,32 @@
   display: none;
 }
 
+.cart-button {
+  padding: 5px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.logout-button {
+  margin: 0px;
+  padding: 4px 12px;
+  background-color: #4961db;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Roboto';
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 .cart-count-badge {
   position: absolute;
-  top: -8px;
-  right: -10px;
-  background-color: orangered;
+  top: -3px;
+  right: -6px;
+  background-color: #ff4500;
   color: #ffffff;
   font-family: 'Roboto';
   font-size: 12px;
@@ -60,7 +85,7 @@
 
 @media screen and (min-width: 768px) {
   .nav-heading {
-    font-size: 24px;
+    font-size: 28px;
   }
   .my-orders-text {
     display: flex;

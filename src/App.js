@@ -1,74 +1,104 @@
 import {Component} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
+import LoginForm from './components/LoginForm'
 import RestaurantMenuPage from './components/RestaurantMenuPage'
+import Cart from './components/Cart'
+import ProtectedRoute from './components/ProtectedRoute'
+
 import CartContext from './context/CartContext'
 
 import './App.css'
 
-/* write your code here */
 class App extends Component {
-  state = {cartList: []}
+  state = {cartList: [], restaurantName: ''}
 
-  /* decrement needs ONLY the id */
-  decrementCartItemQuantity = id => {
+  setRestaurantName = name => {
+    this.setState({restaurantName: name})
+  }
+
+  decrementCartItemQuantity = dishId => {
     this.setState(prevState => {
-      const item = prevState.cartList.find(each => each.id === id)
+      const item = prevState.cartList.find(each => each.dishId === dishId)
 
-      /* return undefined , so state update will not happen. React ignores state update */
-      if (!item) {
-        return prevState
-      }
+      if (!item) return prevState
 
-      /* when quantity is 1, by further decrementing, then that item get removed by filter method */
       if (item.quantity === 1) {
         return {
-          cartList: prevState.cartList.filter(each => each.id !== id),
+          cartList: prevState.cartList.filter(each => each.dishId !== dishId),
         }
       }
 
       return {
         cartList: prevState.cartList.map(each =>
-          each.id === id ? {...each, quantity: each.quantity - 1} : each,
+          each.dishId === dishId
+            ? {...each, quantity: each.quantity - 1}
+            : each,
         ),
       }
     })
   }
 
-  /* increment must receive the entire dish object */
-  incrementCartItemQuantity = dish => {
-    this.setState(prevState => {
-      const existing = prevState.cartList.find(item => item.id === dish.id)
+  incrementCartItemQuantity = dishId => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.map(item =>
+        item.dishId === dishId ? {...item, quantity: item.quantity + 1} : item,
+      ),
+    }))
+  }
 
-      if (existing) {
+  addCartItem = dish => {
+    this.setState(prevState => {
+      const cartList = prevState.cartList || []
+
+      const existingItem = cartList.find(item => item.dishId === dish.dishId)
+
+      if (existingItem) {
+        // Item already exists → update quantity
         return {
-          cartList: prevState.cartList.map(item =>
-            item.id === dish.id ? {...item, quantity: item.quantity + 1} : item,
+          cartList: cartList.map(item =>
+            item.dishId === dish.dishId
+              ? {...item, quantity: item.quantity + dish.quantity}
+              : item,
           ),
         }
       }
-
-      /* add new item */
-      return {
-        cartList: [...prevState.cartList, {...dish, quantity: 1}],
-      }
+      // Item doesn't exist → add new
+      return {cartList: [...cartList, dish]}
     })
   }
 
+  removeCartItem = dishId => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.filter(item => item.dishId !== dishId),
+    }))
+  }
+
+  removeAllCartItems = () => {
+    this.setState({cartList: []})
+  }
+
   render() {
-    const {cartList} = this.state
+    const {cartList, restaurantName} = this.state
 
     return (
       <BrowserRouter>
         <CartContext.Provider
           value={{
             cartList,
+            restaurantName,
+            setRestaurantName: this.setRestaurantName,
+            addCartItem: this.addCartItem,
             decrementCartItemQuantity: this.decrementCartItemQuantity,
             incrementCartItemQuantity: this.incrementCartItemQuantity,
+            removeCartItem: this.removeCartItem,
+            removeAllCartItems: this.removeAllCartItems,
           }}
         >
           <Switch>
-            <Route exact path="/" component={RestaurantMenuPage} />
+            <Route exact path='/login' component={LoginForm} />
+            <ProtectedRoute exact path='/' component={RestaurantMenuPage} />
+            <ProtectedRoute exact path='/cart' component={Cart} />
           </Switch>
         </CartContext.Provider>
       </BrowserRouter>

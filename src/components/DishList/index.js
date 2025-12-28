@@ -6,7 +6,7 @@ const DishList = props => {
   const {dishes} = props
 
   return (
-    <ul className="dishlist-container">
+    <ul className='dishlist-container'>
       {dishes.map(eachDish => (
         <DishCard key={eachDish.dishId} dishDetails={eachDish} />
       ))}

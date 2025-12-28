@@ -6,6 +6,8 @@ import Header from '../Header'
 import CategoryTabs from '../CategoryTabs'
 import DishList from '../DishList'
 
+import CartContext from '../../context/CartContext'
+
 import './index.css'
 
 const apiStatusConstants = {
@@ -82,30 +84,43 @@ class RestaurantMenuPage extends Component {
     const activeCategory = menuData[activeCategoryIndex]
 
     return (
-      <>
-        <Header restaurantName={restaurantName} />
+      <CartContext.Consumer>
+        {value => {
+          const {setRestaurantName} = value
 
-        <CategoryTabs
-          categories={menuData}
-          activeCategoryIndex={activeCategoryIndex}
-          onChangeCategory={this.onChangeCategory}
-        />
+          // update context only once
+          if (value.restaurantName !== restaurantName) {
+            setRestaurantName(restaurantName)
+          }
 
-        <DishList dishes={activeCategory.dishes} />
-      </>
+          return (
+            <>
+              <Header />
+
+              <CategoryTabs
+                categories={menuData}
+                activeCategoryIndex={activeCategoryIndex}
+                onChangeCategory={this.onChangeCategory}
+              />
+
+              <DishList dishes={activeCategory.dishes} />
+            </>
+          )
+        }}
+      </CartContext.Consumer>
     )
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    <div className='loader-container'>
+      <Loader type='ThreeDots' color='#0b69ff' height='50' width='50' />
     </div>
   )
 
   renderFailureView = () => (
-    <div className="failure-container">
-      <p className="failure-text">Something went wrong</p>
-      <button type="button" className="retry-button" onClick={this.getMenuData}>
+    <div className='failure-container'>
+      <p className='failure-text'>Something went wrong</p>
+      <button type='button' className='retry-button' onClick={this.getMenuData}>
         Retry
       </button>
     </div>
@@ -128,7 +143,7 @@ class RestaurantMenuPage extends Component {
 
   render() {
     return (
-      <div className="restaurant-menu-page">
+      <div className='restaurant-menu-page'>
         {this.renderRestaurantMenuPage()}
       </div>
     )

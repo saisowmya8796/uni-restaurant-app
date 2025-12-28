@@ -7,7 +7,7 @@ const CategoryTabs = props => {
      index → tells us which position the category is in the categories array, which we need for UI selection (activeCategoryIndex) 
   */
   return (
-    <ul className="category-section">
+    <ul className='category-section'>
       {categories.map((category, index) => {
         const isActive = index === activeCategoryIndex
 
@@ -17,7 +17,7 @@ const CategoryTabs = props => {
             className={`category-tab-item ${isActive ? 'active-tab' : ''}`}
           >
             <button
-              type="button"
+              type='button'
               className={`category-tab ${isActive ? 'active-tab-text' : ''}`}
               onClick={() => onChangeCategory(index)}
             >
